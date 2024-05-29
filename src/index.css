@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  line-height: 0.5;
+}
+
+.text-container,
+.title,
+.subtitle {
+  margin: 0;
+  padding: 0;
+}
 .title {
   font-family: "League Gothic", sans-serif;
   font-optical-sizing: auto;
@@ -9,11 +19,13 @@
   font-style: normal;
   font-variation-settings: "wdth" 100;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 0.9;
   color: #f9303d;
 }
 .subtitle {
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
   font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
 }

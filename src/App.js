@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import ResizeObserver from "resize-observer-polyfill";
 
+const HEIGHT = 140;
+const WIDTH = 400;
+const CONTENT_WIDTH = 300;
+
 function App() {
   const [title, setTitle] = useState("She was 29. And");
   const [title2, setTitle2] = useState("doctors helped her die.");
@@ -12,7 +16,9 @@ function App() {
 
   const generateImage = () => {
     const element = document.getElementById("image-container");
-    html2canvas(element, { backgroundColor: null }).then((canvas) => {
+    html2canvas(element, {
+      backgroundColor: null,
+    }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       setImageUrl(imgData);
     });
@@ -20,8 +26,8 @@ function App() {
 
   const adjustFontSize = (ref, text) => {
     if (!ref.current) return;
-    const containerWidth = 300;
-    const maxFontSize = 80; // starting font size
+    const containerWidth = CONTENT_WIDTH;
+    const maxFontSize = 80;
     const minFontSize = 10;
     let fontSize = maxFontSize;
 
@@ -95,18 +101,22 @@ function App() {
       <div className="mt-8 p-8 border border-gray-400">
         <div
           id="image-container"
-          className="text-center bg-transparent"
-          style={{ width: "400px" }}
+          className="flex flex-col justify-center items-stretch text-center bg-transparent"
+          style={{ width: WIDTH, height: HEIGHT }}
         >
-          <div className="title-container mx-auto">
-            <h1 ref={titleRef} className="title">
-              {title}
-            </h1>
-            <h1 ref={title2Ref} className="title">
-              {title2}
-            </h1>
+          <div className="flex items-center gap-4">
+            <div className="grow border-b border-black opacity-90" />
+            <div className="title-container mx-auto">
+              <h1 ref={titleRef} className="title">
+                {title}
+              </h1>
+              <h1 ref={title2Ref} className="title">
+                {title2}
+              </h1>
+            </div>
+            <div className="grow border-b border-black" />
           </div>
-          <h2 className="subtitle text-black text-2xl">{subtitle}</h2>
+          <h2 className="subtitle text-black">{subtitle}</h2>
         </div>
       </div>
       {imageUrl && (
