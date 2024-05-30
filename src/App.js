@@ -16,10 +16,13 @@ function App() {
 
   const generateImage = () => {
     const element = document.getElementById("image-container");
+    const scale = window.devicePixelRatio || 1;
+
     html2canvas(element, {
       backgroundColor: null,
+      scale: scale,
     }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      const imgData = canvas.toDataURL("image/png", 1.0); // Set the quality parameter to 1.0 for high quality
       setImageUrl(imgData);
     });
   };
@@ -69,7 +72,7 @@ function App() {
   }, [title, title2]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-4">Text to Image Generator</h1>
       <input
         type="text"
@@ -92,13 +95,8 @@ function App() {
         value={subtitle}
         onChange={(e) => setSubtitle(e.target.value)}
       />
-      <button
-        onClick={generateImage}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        Generate Image
-      </button>
-      <div className="mt-8 p-8 border border-gray-400">
+      <div className="mt-4">Preview:</div>
+      <div className="mt-2 p-8 border border-gray-400">
         <div
           id="image-container"
           className="flex flex-col justify-center items-stretch text-center bg-transparent"
@@ -121,8 +119,13 @@ function App() {
       </div>
       {imageUrl && (
         <div className="mt-8">
-          <h3 className="text-xl mb-2">Generated Image:</h3>
-          <img src={imageUrl} alt="Generated" />
+          <h3 className="text-xl mb-2 text-center">Generated Image:</h3>
+          <img
+            id="generated-image"
+            src={imageUrl}
+            alt="Generated"
+            width={WIDTH}
+          />
         </div>
       )}
     </div>
