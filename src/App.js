@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
-import ResizeObserver from "resize-observer-polyfill";
 
 const HEIGHT = 140;
 const WIDTH = 400;
