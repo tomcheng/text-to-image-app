@@ -7,9 +7,9 @@ const WIDTH = 400;
 const CONTENT_WIDTH = 300;
 
 function App() {
-  const [title, setTitle] = useState("She was 29. And");
-  const [title2, setTitle2] = useState("doctors helped her die.");
-  const [subtitle, setSubtitle] = useState("By Rupa Subramanya");
+  const [title, setTitle] = useState("First line of title");
+  const [title2, setTitle2] = useState("Second line of title");
+  const [subtitle, setSubtitle] = useState("By Author Name");
   const [imageUrl, setImageUrl] = useState("");
   const titleRef = useRef(null);
   const title2Ref = useRef(null);
@@ -91,7 +91,7 @@ function App() {
       <input
         type="text"
         placeholder="Enter subtitle"
-        className="mb-4 p-2 border border-gray-300 rounded uppercase"
+        className="mb-4 p-2 border border-gray-300 rounded"
         value={subtitle}
         onChange={(e) => setSubtitle(e.target.value)}
       />
@@ -108,9 +108,11 @@ function App() {
               <h1 ref={titleRef} className="title">
                 {title}
               </h1>
-              <h1 ref={title2Ref} className="title">
-                {title2}
-              </h1>
+              {title2 && (
+                <h1 ref={title2Ref} className="title">
+                  {title2}
+                </h1>
+              )}
             </div>
             <div className="grow border-b border-black" />
           </div>
