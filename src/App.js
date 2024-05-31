@@ -55,21 +55,12 @@ function App() {
   };
 
   useEffect(() => {
-    adjustFontSize(titleRef, title);
-    adjustFontSize(title2Ref, title2);
-    generateImage();
-  }, [title, title2, subtitle]);
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(() => {
+    setTimeout(() => {
       adjustFontSize(titleRef, title);
       adjustFontSize(title2Ref, title2);
-    });
-
-    resizeObserver.observe(document.getElementById("image-container"));
-
-    return () => resizeObserver.disconnect();
-  }, [title, title2]);
+      generateImage();
+    }, 100);
+  }, [title, title2, subtitle]);
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
@@ -95,8 +86,8 @@ function App() {
         value={subtitle}
         onChange={(e) => setSubtitle(e.target.value)}
       />
-      <div className="mt-4">Preview:</div>
-      <div className="mt-2 p-8 border border-gray-400">
+      <div className="mt-4 mb-4">Preview:</div>
+      <div className="p-8 border border-gray-400">
         <div
           id="image-container"
           className="flex flex-col justify-center items-stretch text-center bg-transparent"
@@ -121,13 +112,17 @@ function App() {
       </div>
       {imageUrl && (
         <div className="mt-8">
-          <h3 className="text-xl mb-2 text-center">Generated Image:</h3>
-          <img
-            id="generated-image"
-            src={imageUrl}
-            alt="Generated"
-            width={WIDTH}
-          />
+          <h3 className="mb-4 text-center">
+            Generated Image (drag and drop this):
+          </h3>
+          <div className="border border-gray-400 p-8">
+            <img
+              id="generated-image"
+              src={imageUrl}
+              alt="Generated"
+              width={WIDTH}
+            />
+          </div>
         </div>
       )}
     </div>
