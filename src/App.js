@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 
-const HEIGHT = 140;
+const MIN_HEIGHT = 140;
 const WIDTH = 400;
 const CONTENT_WIDTH = 300;
 
@@ -10,8 +10,10 @@ function App() {
   const [title2, setTitle2] = useState("Second line of title");
   const [subtitle, setSubtitle] = useState("By Author Name");
   const [imageUrl, setImageUrl] = useState("");
+  const [imageHeight, setImageHeight] = useState(MIN_HEIGHT);
   const titleRef = useRef(null);
   const title2Ref = useRef(null);
+  const subtitleRef = useRef(null);
 
   const generateImage = () => {
     const element = document.getElementById("image-container");
@@ -53,10 +55,20 @@ function App() {
     document.body.removeChild(testElement);
   };
 
+  const recalculateHeight = () => {
+    const titleHeight = titleRef.current.offsetHeight;
+    const title2Height = title2Ref.current ? title2Ref.current.offsetHeight : 0;
+    const subtitleHeight = subtitleRef.current.offsetHeight;
+    const height = titleHeight + title2Height + subtitleHeight;
+    const newHeight = height > MIN_HEIGHT ? height : MIN_HEIGHT;
+    setImageHeight(newHeight);
+  };
+
   useEffect(() => {
     setTimeout(() => {
       adjustFontSize(titleRef, title);
       adjustFontSize(title2Ref, title2);
+      recalculateHeight();
       generateImage();
     }, 100);
   }, [title, title2, subtitle]);
@@ -90,7 +102,7 @@ function App() {
         <div
           id="image-container"
           className="flex flex-col justify-center items-stretch text-center bg-transparent"
-          style={{ width: WIDTH, height: HEIGHT }}
+          style={{ width: WIDTH, height: imageHeight }}
         >
           <div className="flex items-center gap-4">
             <div className="grow border-b border-black opacity-90" />
@@ -106,7 +118,9 @@ function App() {
             </div>
             <div className="grow border-b border-black" />
           </div>
-          <h2 className="subtitle text-black">{subtitle}</h2>
+          <h2 ref={subtitleRef} className="subtitle text-black">
+            {subtitle}
+          </h2>
         </div>
       </div>
       {imageUrl && (
