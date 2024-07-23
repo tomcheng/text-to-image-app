@@ -82,6 +82,7 @@ function App() {
         className="mb-2 p-2 border border-gray-300 rounded"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        onFocus={(e) => e.target.select()}
       />
       <input
         type="text"
@@ -89,6 +90,7 @@ function App() {
         className="mb-2 p-2 border border-gray-300 rounded"
         value={title2}
         onChange={(e) => setTitle2(e.target.value)}
+        onFocus={(e) => e.target.select()}
       />
       <input
         type="text"
@@ -96,6 +98,7 @@ function App() {
         className="mb-4 p-2 border border-gray-300 rounded"
         value={subtitle}
         onChange={(e) => setSubtitle(e.target.value)}
+        onFocus={(e) => e.target.select()}
       />
       <div className="mt-4 mb-4">Preview:</div>
       <div className="p-8 border border-gray-400">
