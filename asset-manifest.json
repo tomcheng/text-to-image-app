@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/text-to-image-app/static/css/main.cb7def43.css",
-    "main.js": "/text-to-image-app/static/js/main.00ed89b3.js",
+    "main.js": "/text-to-image-app/static/js/main.4da51ec7.js",
     "static/js/453.04a06380.chunk.js": "/text-to-image-app/static/js/453.04a06380.chunk.js",
     "index.html": "/text-to-image-app/index.html",
     "main.cb7def43.css.map": "/text-to-image-app/static/css/main.cb7def43.css.map",
-    "main.00ed89b3.js.map": "/text-to-image-app/static/js/main.00ed89b3.js.map",
+    "main.4da51ec7.js.map": "/text-to-image-app/static/js/main.4da51ec7.js.map",
     "453.04a06380.chunk.js.map": "/text-to-image-app/static/js/453.04a06380.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cb7def43.css",
-    "static/js/main.00ed89b3.js"
+    "static/js/main.4da51ec7.js"
   ]
 }
