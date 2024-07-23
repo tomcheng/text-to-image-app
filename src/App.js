@@ -102,7 +102,7 @@ function App() {
         <div
           id="image-container"
           className="flex flex-col justify-center items-stretch text-center bg-transparent"
-          style={{ width: WIDTH, height: imageHeight }}
+          style={{ width: WIDTH, height: imageHeight + 16 }}
         >
           <div className="flex items-center gap-4">
             <div className="grow border-b border-black opacity-90" />
